@@ -129,7 +129,7 @@ int main(int argc, char *argv[])
 		ERROR("%s!\n", strerror(errno));
 		rv = -6; goto end;
 	}
-	
+
 end:
 	return rv;
 }

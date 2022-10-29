@@ -164,7 +164,7 @@ int main(int argc, char *argv[])
 		 **********************************************************************/
 		buf_size = (2 << i);
 		printf("Running with buffer_size = %u\n", buf_size);
-		
+
 		buf = malloc(buf_size);
 		if (!buf) {
 			ERROR("malloc failed!\n");

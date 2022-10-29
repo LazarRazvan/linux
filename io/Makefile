@@ -29,8 +29,8 @@ all: install run/file_buffering run/my_cp run/open
 install:
 	test -d "obj" || mkdir obj
 	test -d "run" || mkdir run
-	dd if=/dev/zero of=$(1G_FILE) bs=1 count=0 seek=1G	
-	dd if=/dev/zero of=$(10M_FILE) bs=1 count=0 seek=10M	
+	dd if=/dev/zero of=$(1G_FILE) bs=1 count=0 seek=1G
+	dd if=/dev/zero of=$(10M_FILE) bs=1 count=0 seek=10M
 
 .PHONY: install
 

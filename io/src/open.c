@@ -85,7 +85,7 @@ static void test2(void)
  * Test 3: Open (and create) file with read and write permissions for current
  * user.
  *
- * Note that if exists, mode flags are not taken into account. 
+ * Note that if exists, mode flags are not taken into account.
  */
 static void test3(void)
 {
@@ -116,7 +116,7 @@ static void test3(void)
  * Test 4: Open (and create) file with read and write permissions for current
  * user and group;
  *
- * Note that if exists, mode flags are not taken into account. 
+ * Note that if exists, mode flags are not taken into account.
  */
 static void test4(void)
 {
@@ -149,7 +149,7 @@ static void test4(void)
  * Test 5: Open (and create) file with read and write permissions for current
  * user, group and others;
  *
- * Note that if exists, mode flags are not taken into account. 
+ * Note that if exists, mode flags are not taken into account.
  */
 static void test5(void)
 {

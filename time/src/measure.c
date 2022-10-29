@@ -60,8 +60,8 @@ static void __buf_sort(int *v)
 			}
 		}
 	}
-	
-	// Stop timer and release 
+
+	// Stop timer and release
 	DEBUG("Buffer sort timer!\n");
 	if (process_time_end(sort_timer_fd) < 0) {
 		ERROR("Fail to stop buffer sort timer!\n");
@@ -112,7 +112,7 @@ static void __buf_create(void)
 	for (int i = 0; i < BUF_SIZE; i++)
 		v[i] = getpid() + rand();
 
-	// Stop timer and release 
+	// Stop timer and release
 	DEBUG("Buffer create timer!\n");
 	if (process_time_end(create_timer_fd) < 0) {
 		ERROR("Fail to stop buffer create timer!\n");

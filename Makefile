@@ -1,7 +1,7 @@
 ##
 # All subdirectories.
 ##
-SUBDIRS := $(wildcard src/*/.)
+SUBDIRS := $(wildcard */.)
 
 ##
 # Targets for each subdirectory.

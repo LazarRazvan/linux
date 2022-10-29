@@ -1,5 +1,5 @@
 /**
- * Program break (heap segment) example.
+ * Calendar time.
  * Copyright (C) 2022 Lazar Razvan.
  *
  * Expose usage of calendar time measuring the time since Epoch (1 Jan 1970) and

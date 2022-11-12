@@ -1,25 +1,25 @@
 /**
- * Linux I/O buffering.
+ * Linux reduce I/O buffering using fsync().
  * Copyright (C) 2022 Lazar Razvan.
  *
- * Expose how file system and kernel deals with read() and write() system calls.
+ * Expose how file system and kernel deals with read() and write() system calls
+ * when file data and metadata are forced to be updated to disk using fsync()
+ * call.
  *
- * When performing the write() system call, data is not directly written to disk
- * (which is a slow operation) but instead it is cached into a "buffer cache" in
- * kernel. Whenever a process wants to read data from file, it is rather passed
- * from "buffer cache" then reading from disk.
+ * fsync is responsible for synchronized I/O file integrity completion. This
+ * means that all files data and metadata (timestamp, file size, etc ...) are
+ * written to disk and only after fsync() call returns.
  *
- * When performing the read() system call, data is copied from disk to "buffer
- * cache" in kernel. Most of the time, data is read in advanced to be prepared
- * for later read() calls.
+ * Expose the differences between "file_buffering" where time penalty is related
+ * to multiple read()/write() system calls.
  *
- * Based on the above, this program expose the time involved for copying a file
- * using different size for the buffer used to read data. While the buffer size
- * increase, the elapsed time decrease. This is because the number of system
- * call decrease, and rather not due to file disk operations, since most of the
- * time, data is cached.
+ * Using fsync() after each write() call will increase significantly execution
+ * time, since that is not buffer but instead is written to disk.
  *
- * Use 10M as destination file for example.
+ * Examples of other related functions: fdatasync() and sync(). Also, the same
+ * behavior can be achieved using O_SYNC flag when opening destination file.
+ *
+ * Use 100K as destination file for example.
  */
 
 #include <stdio.h>
@@ -89,6 +89,14 @@ static int __copy(void *buf, unsigned int buf_size, int fd_src, int fd_dst)
 			ERROR("Fail to write data!\n");
 			rv = -5; goto end;
 		}
+
+		/**
+		 * For synchronized I/O file integrity completion.
+		 */
+		if (fsync(fd_dst)) {
+			ERROR("Fsync error!\n");
+			rv = -6; goto end;
+		}
 	}
 
 	/**
@@ -96,12 +104,12 @@ static int __copy(void *buf, unsigned int buf_size, int fd_src, int fd_dst)
 	 */
 	if (process_time_end(timer_fd) < 0) {
 		ERROR("Fail to stop timer!\n");
-		rv = -6; goto end;
+		rv = -7; goto end;
 	}
 
 	if (process_time_release(timer_fd)) {
 		ERROR("Fail to release timer!\n");
-		rv = -7; goto end;
+		rv = -8; goto end;
 	}
 
 end:

@@ -5,15 +5,16 @@ CC := gcc
 INC :=-Iinc
 CFLAGS := -Wall
 
-1G_FILE := run/1g_file		# my_cp source file of 1G
-10M_FILE := run/10m_file	# buffering source file of 10M
+1G_FILE := run/1g_file
+10M_FILE := run/10m_file
+100K_FILE := run/100k_file
 
 ###############################################################################
 # Default rule
 # run install rule and create executable files
 ##
 
-all: install run/file_buffering run/my_cp run/open
+all: install run/file_buffering run/file_fsync run/my_cp run/open
 	@echo "================================================"
 	@echo "io build successfully"
 	@echo "================================================"
@@ -31,12 +32,16 @@ install:
 	test -d "run" || mkdir run
 	dd if=/dev/zero of=$(1G_FILE) bs=1 count=0 seek=1G
 	dd if=/dev/zero of=$(10M_FILE) bs=1 count=0 seek=10M
+	dd if=/dev/zero of=$(100K_FILE) bs=1 count=0 seek=100K
 
 .PHONY: install
 
 ###############################################################################
 # Executable files rule
 ##
+
+run/file_fsync: obj/file_fsync.o obj/process_time.o
+	$(CC) $(CFLAGS) $^ -o $@
 
 run/file_buffering: obj/file_buffering.o obj/process_time.o
 	$(CC) $(CFLAGS) $^ -o $@

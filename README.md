@@ -25,3 +25,8 @@ Process segments (text, initialized data and uninitialized data)
 
 ### program_break.c
 Explain heap memory usage, how program break increase and decrease.
+
+## signals
+### signal.c
+signal() system call to change disposition for a particular signal and ignore a
+signal.

@@ -10,7 +10,7 @@ CFLAGS := -Wall
 # Run intall rule and create executable files
 ##
 
-all: install run/program_break run/layout
+all: install run/program_break run/layout run/fork run/vfork
 	@echo "================================================"
 	@echo "processes build successfully"
 	@echo "================================================"
@@ -36,6 +36,12 @@ run/program_break: obj/program_break.o
 	$(CC) $(CFLAGS) $< -o $@
 
 run/layout: obj/layout.o
+	$(CC) $(CFLAGS) $< -o $@
+
+run/fork: obj/fork.o
+	$(CC) $(CFLAGS) $< -o $@
+
+run/vfork: obj/vfork.o
 	$(CC) $(CFLAGS) $< -o $@
 
 ###############################################################################

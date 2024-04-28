@@ -10,7 +10,8 @@ CFLAGS := -Wall
 # Run intall rule and create executable files
 ##
 
-all: install run/stream_server run/stream_client
+all: install run/stream_server run/stream_client run/datagram_server \
+	run/datagram_client
 	@echo "================================================"
 	@echo "processes build successfully"
 	@echo "================================================"
@@ -36,6 +37,12 @@ run/stream_server: obj/stream_server.o
 	$(CC) $(CFLAGS) $< -o $@
 
 run/stream_client: obj/stream_client.o
+	$(CC) $(CFLAGS) $< -o $@
+
+run/datagram_server: obj/datagram_server.o
+	$(CC) $(CFLAGS) $< -o $@
+
+run/datagram_client: obj/datagram_client.o
 	$(CC) $(CFLAGS) $< -o $@
 
 ###############################################################################

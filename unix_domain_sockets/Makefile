@@ -11,7 +11,7 @@ CFLAGS := -Wall
 ##
 
 all: install run/stream_server run/stream_client run/datagram_server \
-	run/datagram_client
+	run/datagram_client run/datagram_socketpair
 	@echo "================================================"
 	@echo "processes build successfully"
 	@echo "================================================"
@@ -43,6 +43,9 @@ run/datagram_server: obj/datagram_server.o
 	$(CC) $(CFLAGS) $< -o $@
 
 run/datagram_client: obj/datagram_client.o
+	$(CC) $(CFLAGS) $< -o $@
+
+run/datagram_socketpair: obj/datagram_socketpair.o
 	$(CC) $(CFLAGS) $< -o $@
 
 ###############################################################################

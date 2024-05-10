@@ -58,3 +58,6 @@ sudo ip link del veth0
 ```
 ### datagram_server/datagram_client
 UDP Client/Server application example using internet domain sockets.
+
+### dns_example
+DNS showing resolving a host using getaddrinfo().

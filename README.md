@@ -61,3 +61,6 @@ UDP Client/Server application example using internet domain sockets.
 
 ### dns_example
 DNS showing resolving a host using getaddrinfo().
+
+### datagram_nameinfo_server
+UDP Server application that also extract the hostname and service of the client.

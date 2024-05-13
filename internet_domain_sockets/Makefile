@@ -10,7 +10,8 @@ CFLAGS := -Wall
 # Run intall rule and create executable files
 ##
 
-all: install run/datagram_server run/datagram_client run/dns_example
+all: install run/datagram_server run/datagram_client run/dns_example \
+	run/datagram_nameinfo_server
 	@echo "================================================"
 	@echo "processes build successfully"
 	@echo "================================================"
@@ -33,6 +34,9 @@ install:
 ##
 
 run/datagram_server: obj/datagram_server.o
+	$(CC) $(CFLAGS) $< -o $@
+
+run/datagram_nameinfo_server: obj/datagram_nameinfo_server.o
 	$(CC) $(CFLAGS) $< -o $@
 
 run/datagram_client: obj/datagram_client.o

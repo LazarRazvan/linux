@@ -64,3 +64,11 @@ DNS showing resolving a host using getaddrinfo().
 
 ### datagram_nameinfo_server
 UDP Server application that also extract the hostname and service of the client.
+
+### internet_domain_sockets_generic
+Generic implementation for bind, connect and listen using getaddrinfo() that is
+able to perform name and port resolution, removing the constraint of always
+knowing server ip address or port.
+
+As usecase, a simple client-server is implemented using the generic functions
+using IPv4 and stream sockets for communication.

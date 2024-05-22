@@ -10,7 +10,7 @@ CFLAGS := -Wall
 # Run intall rule and create executable files
 ##
 
-all: install run/server run/client
+all: install run/it_tcp_server run/it_tcp_client
 	@echo "================================================"
 	@echo "processes build successfully"
 	@echo "================================================"
@@ -32,10 +32,10 @@ install:
 # Executable files rule
 ##
 
-run/server: obj/utils.o obj/server.o
+run/it_tcp_server: obj/utils.o obj/it_tcp_server.o
 	$(CC) $(CFLAGS) $^ -o $@
 
-run/client: obj/utils.o obj/client.o
+run/it_tcp_client: obj/utils.o obj/it_tcp_client.o
 	$(CC) $(CFLAGS) $^ -o $@
 
 ###############################################################################

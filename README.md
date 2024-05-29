@@ -109,3 +109,18 @@ The proc_con_tcp_server can also be tested using **telnet** command.
 ```
 telnet localhost 50001
 ```
+
+#### thread_con_tcp_server
+Concurent tcp server is implemented using the generic functions using
+IPv4 and stream sockets for communication. A new thread is created for each
+connection reaching to the server, dealing with clients in parallel.
+
+The proc_con_tcp_server can be tested using **/run/tcp_client**.
+```
+./run/tcp_client
+```
+
+The proc_con_tcp_server can also be tested using **telnet** command.
+```
+telnet localhost 50001
+```

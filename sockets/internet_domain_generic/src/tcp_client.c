@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 {
 	int sock_fd;
 	char _buf[BUFFER_SIZE];
-	ssize_t read_bytes, send_bytes;
+	ssize_t read_bytes, recv_bytes, send_bytes;
 
 	/*********************************************************
 	 * connect to server listening socket
@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
 		// send
 		send_bytes = send(sock_fd, _buf, read_bytes, 0);
 		if (send_bytes == -1) {
-			ERROR("Send failed: %s!\n", strerror(errno));
+			ERROR("send() failed: %s!\n", strerror(errno));
 			goto sock_close;
 		}
 
@@ -62,6 +62,19 @@ int main(int argc, char *argv[])
 		}
 
 		DEBUG("Send data [%.*s]\n", (int)send_bytes, _buf);
+
+		//
+		recv_bytes = recv(sock_fd, _buf, BUFFER_SIZE, 0);
+		if (recv_bytes == -1) {
+			ERROR("recv() failed: %s!\n", strerror(errno));
+			goto sock_close;
+		}
+
+		//
+		if (recv_bytes == 0) {
+			DEBUG("Connection closed!\n");
+			goto sock_close;
+		}
 	}
 
 sock_close:

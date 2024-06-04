@@ -124,3 +124,19 @@ The proc_con_tcp_server can also be tested using **telnet** command.
 ```
 telnet localhost 50001
 ```
+
+#### thread_pool_con_tcp_server
+Concurent tcp server is implemented using the generic functions using
+IPv4 and stream sockets for communication. To speed up the process, a thread
+pool is used to reduce the overhead of creating and joining a new thread on
+each new connection.
+
+The thread_pool_con_tcp_server can be tested using **/run/tcp_client**.
+```
+./run/tcp_client
+```
+
+The thread_pool_con_tcp_server can also be tested using **telnet** command.
+```
+telnet localhost 50001
+```

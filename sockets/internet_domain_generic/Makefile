@@ -11,7 +11,8 @@ CFLAGS := -Wall
 ##
 
 all: install run/it_tcp_server run/it_echo_server run/tcp_client\
-	run/it_echo_client run/proc_con_tcp_server run/thread_con_tcp_server
+	run/it_echo_client run/proc_con_tcp_server run/thread_con_tcp_server\
+	run/thread_pool_con_tcp_server
 
 	@echo "================================================"
 	@echo "processes build successfully"
@@ -50,6 +51,9 @@ run/proc_con_tcp_server: obj/utils.o obj/proc_con_tcp_server.o
 	$(CC) $(CFLAGS) $^ -o $@
 
 run/thread_con_tcp_server: obj/utils.o obj/thread_con_tcp_server.o
+	$(CC) $(CFLAGS) $^ -o $@
+
+run/thread_pool_con_tcp_server: obj/utils.o obj/thread_pool_con_tcp_server.o
 	$(CC) $(CFLAGS) $^ -o $@
 
 ###############################################################################
